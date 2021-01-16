@@ -7,7 +7,8 @@ def insertSort(l):
             i= i-1
         l[i+1] = chave
         
-l = [5,2,4,6,1,3]
+print("Printe todos os números separados por espaços")
+l = [int(i) for i in input().split(" ") ]
 print(l)
 insertSort(l)
 print(l)
