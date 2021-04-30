@@ -1,9 +1,9 @@
 #include <iostream>
 #include <math.h>
 #include <string>
-//#include <boost/utility/binary.hpp>
+
 using namespace std;
-// g++ - lboost_regex boost.cpp - o boost
+
 struct Bloco {
   unsigned long long int valor;
   unsigned long long int indice;
