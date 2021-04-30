@@ -1,49 +1,43 @@
 #include <iostream>
+#include <math.h>
+#include <string>
 //#include <boost/utility/binary.hpp>
 using namespace std;
-//g++ - lboost_regex boost.cpp - o boost
-struct Bloco
-{
-  int valor;
-  int indice;
+// g++ - lboost_regex boost.cpp - o boost
+struct Bloco {
+  unsigned long long int valor;
+  unsigned long long int indice;
   Bloco *prox;
-  Bloco()
-  {
+  Bloco() {
     valor = 0;
     indice = 0;
     prox = NULL;
   }
 };
 
-struct MyArray
-{
-  int tamanho;
+struct MyArray {
+  unsigned long long int tamanho;
   Bloco *p;
   Bloco *u;
-  MyArray()
-  {
+  MyArray() {
     tamanho = 0;
     p = NULL;
     u = NULL;
   }
 };
 
-void adiciona(int valor, MyArray *array)
-{
+void adiciona(int valor, int indice, MyArray *array) {
   Bloco *aux = new Bloco();
-  if (array->tamanho == 0)
-  {
+  if (array->tamanho == 0) {
     aux->valor = valor;
-    aux->indice = array->tamanho;
+    aux->indice = indice;
     aux->prox = NULL;
     array->p = aux;
     array->u = aux;
     array->tamanho++;
-  }
-  else
-  {
+  } else {
     aux->valor = valor;
-    aux->indice = array->tamanho;
+    aux->indice = indice;
     aux->prox = NULL;
     array->u->prox = aux;
     array->u = aux;
@@ -51,18 +45,15 @@ void adiciona(int valor, MyArray *array)
   }
 }
 
-void printArray(MyArray *array)
-{
-  if (array->tamanho == 0)
-  {
+void printArray(MyArray *array) {
+  if (array->tamanho == 0) {
     cout << "Array vázio!" << endl;
     return;
   }
   // 8
   Bloco *aux = array->p;
   cout << "[";
-  while (aux != NULL)
-  {
+  while (aux != NULL) {
     cout << aux->valor;
     if (array->tamanho > 1 && aux->indice != array->u->indice)
       cout << ", ";
@@ -71,19 +62,15 @@ void printArray(MyArray *array)
   cout << "]" << endl;
 }
 
-void printElemento(int indice, MyArray *array)
-{
-  if (array->tamanho == 0)
-  {
+void printElemento(int indice, MyArray *array) {
+  if (array->tamanho == 0) {
     cout << "Array vázio!" << endl;
     return;
   }
   // 8
   Bloco *aux = array->p;
-  while (aux != NULL)
-  {
-    if (aux->indice == indice)
-    {
+  while (aux != NULL) {
+    if (aux->indice == indice) {
       cout << aux->valor << endl;
       return;
     }
@@ -91,11 +78,9 @@ void printElemento(int indice, MyArray *array)
   }
 }
 
-int getValor(int indice, MyArray *array)
-{
+int getValor(int indice, MyArray *array) {
   Bloco *aux = array->p;
-  while (aux != NULL)
-  {
+  while (aux != NULL) {
     if (aux->indice == indice)
       break;
     aux = aux->prox;
@@ -103,10 +88,18 @@ int getValor(int indice, MyArray *array)
   return aux->valor;
 }
 
-void troca(int indice1, int indice2, MyArray *array)
-{
-  if (array->tamanho == 0)
-  {
+bool valor(int indice, MyArray *array) {
+  Bloco *aux = array->p;
+  while (aux != NULL) {
+    if (aux->indice == indice)
+      return true;
+    aux = aux->prox;
+  }
+  return false;
+}
+
+void troca(int indice1, int indice2, MyArray *array) {
+  if (array->tamanho == 0) {
     cout << "Array vázio!" << endl;
     return;
   }
@@ -114,14 +107,11 @@ void troca(int indice1, int indice2, MyArray *array)
   Bloco *aux = new Bloco();
   Bloco *aux1 = array->p;
   Bloco *aux2 = array->p;
-  while (aux1->indice != indice1 || aux2->indice != indice2)
-  {
-    if (aux1->indice != indice1)
-    {
+  while (aux1->indice != indice1 || aux2->indice != indice2) {
+    if (aux1->indice != indice1) {
       aux1 = aux1->prox;
     }
-    if (aux2->indice != indice2)
-    {
+    if (aux2->indice != indice2) {
       aux2 = aux2->prox;
     }
   }
@@ -131,66 +121,61 @@ void troca(int indice1, int indice2, MyArray *array)
   aux2->valor = aux->valor;
 }
 
-void insertSort(MyArray *l)
-{
-  for (int j = 1; j < l->tamanho; j++)
-  {
-    int chave = getValor(j, l);
-    int i = j - 1;
-    while (i >= 0 && getValor(i, l) > chave)
-    {
-      troca(i + 1, i, l);
-      //l[i + 1] = l[i];
-      i = i - 1;
+long long int bin(string a) {
+  long long int soma = 0;
+  long long int p = 0;
+  for (int i = a.size() - 1; i > -1; i--) {
+    if (a[i] != '0') {
+      soma += pow(2, p);
     }
-    //l[i + 1] = chave;
+    p++;
+  }
+  return soma;
+}
+long long int rec(unsigned long long int k, MyArray *array) {
+  //cout << k << endl;
+  /*if(k < 0){
+    return -1;
+  }*/
+  if (valor(k, array)) {
+    //cout << k << "->" << getValor(k, array) << endl;
+    return getValor(k, array);
+  } else {
+    adiciona(rec(k - 1, array) + rec(k - 2, array), k, array);
+    return getValor(k, array);
   }
 }
 
-int main()
-{
+int main() {
 
-  MyArray *l = new MyArray();
   int t;
   char a, b, c;
   string n, x;
-  while (cin >> t)
-  {
-    while (t > 0)
-    {
+  unsigned long long int k;
+  // fflush(stdin);
+  while (cin >> t) {
+    while (t > 0) {
       cin >> n;
-      unsigned short n1 = BOOST_BINARY(n);
-      cout << n1 << endl;
-      /*x = rec(n, lista);
-      if (len(x) > 3)
-      {
-        a = x[l->tamanho - 1];
-        b = x[l->tamanho - 2];
-        c = x[l->tamanho - 3];
-        x = a << b << c;
+      MyArray *l = new MyArray();
+      adiciona(1, 1, l);
+      adiciona(1, 2, l);
+      k = bin(n);
+      k = rec(k, l);
+      x = to_string(k);
+      if (x.size() > 3) {
+        a = x[x.size() - 1];
+        b = x[x.size() - 2];
+        c = x[x.size() - 3];
+        x = a + b + c;
         cout << x << endl;
-      }
-      else if (len(x) == 3)
-      {
+      } else if (x.size() == 3) {
         cout << x << endl;
-      }
-      else if (len(x) == 2)
-      {
+      } else if (x.size() == 2) {
         cout << "0" << x << endl;
-      }
-      else
-      {
+      } else {
         cout << "00" << x << endl;
-      }*/
+      }
       t--;
-    }
-
-    //fflush(stdin);
-    while (teste != '\n')
-    {
-      cin >> a;
-      adiciona(a, l);
-      //teste = getchar(); //para capturar o '\n'
     }
   }
 
