@@ -1,15 +1,17 @@
-# Algoritmos
+# Algorithms
 
-### Praticas de conceitos em certas linguagens
+- Go
 
-* Python  
-  * Abandonado
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Golang/InsertSort/main.go">Insert Sort</a>
 
-* C++ 
-  * Abandonado
+- Rust
 
-* Go 
-  * Praticando agora
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Rust/InsertSort/src/main.rs">Insert Sort</a>
 
-* Rust
-  * Praticando agora
+- Python
+
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Python/InsertSort/inserSort.py">Insert Sort</a>
+
+- C++
+
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Cplusplus/InsertSort/insertSort.cpp">Insert Sort</a>
