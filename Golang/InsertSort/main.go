@@ -10,13 +10,13 @@ import (
 
 func InsertSort(a []int) {
 	for j := 1; j < len(a); j++ {
-		chave := a[j]
+		key := a[j]
 		i := j - 1
-		for i > -1 && a[i] > chave {
+		for i > -1 && a[i] > key {
 			a[i+1] = a[i]
 			i = i - 1
 		}
-		a[i+1] = chave
+		a[i+1] = key
 	}
 }
 
@@ -26,7 +26,7 @@ func main() {
 	fmt.Println("Enter the numbers separated by spaces")
 	fmt.Println("---------------------")
 	array := []int{}
-loop: //label do loop
+loop: //label loop
 	for {
 		fmt.Print("=> ")
 		text, _ := reader.ReadString('\n') // reading the entries
