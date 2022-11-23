@@ -1,4 +1,4 @@
-use std::io;
+use std::io::{self, Write};
 
 fn insert_sort(a: &mut [i32]) {
     for j in 1..a.len() {
@@ -14,12 +14,21 @@ fn insert_sort(a: &mut [i32]) {
 
 fn main() {
     println!("Insert Sort");
-    println!("Enter the numbers separated by spaces");
+    println!("Enter the numbers separated by spaces\n* type clear to clear array, quit to quit");
     let mut vec: Vec<i32> = Vec::new();
     loop {
+        print!("=> ");
+        let _result_flush = io::stdout().flush();
         let mut user_input = String::new();
         let stdin = io::stdin();
         let _result = stdin.read_line(&mut user_input); // reading the entries
+        if user_input.trim() == "clear" {
+            vec.clear();
+            continue;
+        }
+        if user_input.trim() == "quit" {
+            break;
+        }
         let split = user_input.split(" ");
         for s in split {
             let trimmed = s.trim(); //removing spaces

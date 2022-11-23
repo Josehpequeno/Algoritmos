@@ -3,10 +3,12 @@
 - Go
 
   - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Golang/InsertSort/main.go">Insert Sort</a>
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Golang/MergeSort/main.go">Merge Sort</a>
 
 - Rust
 
   - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Rust/InsertSort/src/main.rs">Insert Sort</a>
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Rust/MergeSort/src/main.rs">Merge Sort</a>
 
 - Python
 
