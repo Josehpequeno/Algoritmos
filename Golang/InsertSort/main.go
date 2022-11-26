@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func InsertSort(a []int) {
+func insert_sort(a []int) {
 	for j := 1; j < len(a); j++ {
 		key := a[j]
 		i := j - 1
@@ -49,7 +49,7 @@ loop: //label loop
 		}
 		fmt.Println("----------------------")
 		fmt.Println("Array before Insert Sort: ", array)
-		InsertSort(array)
+		insert_sort(array)
 		fmt.Println("Array after Insert Sort: ", array)
 		fmt.Println("----------------------")
 	}

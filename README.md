@@ -4,6 +4,7 @@
 
   - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Golang/InsertSort/main.go">Insert Sort</a>
   - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Golang/MergeSort/main.go">Merge Sort</a>
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Golang/Find-Max-Crossing-Subarray/main.go">Find Max Crossing Subarray </a>
 
 - Rust
 

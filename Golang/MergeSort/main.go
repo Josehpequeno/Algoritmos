@@ -9,16 +9,16 @@ import (
 	"strings"
 )
 
-func MergeSort(a []int, p int, r int) {
+func merge_sort(a []int, p int, r int) {
 	if r-p > 1 {
 		q := int(math.Floor(float64(p+r) / 2))
-		MergeSort(a, p, q)
-		MergeSort(a, q, r)
-		Merge(a, p, q, r)
+		merge_sort(a, p, q)
+		merge_sort(a, q, r)
+		merge(a, p, q, r)
 	}
 }
 
-func Merge(a []int, p int, q int, e int) {
+func merge(a []int, p int, q int, e int) {
 	n1 := q - p
 	n2 := e - q
 	l := make([]int, n1+1)
@@ -76,7 +76,7 @@ loop: //label loop
 		}
 		fmt.Println("----------------------")
 		fmt.Println("Array before Merge Sort: ", array)
-		MergeSort(array, 0, len(array)) // start, len
+		merge_sort(array, 0, len(array)) // start, len
 		fmt.Println("===============>*<===============")
 		fmt.Println("Array after Merge Sort: ", array)
 		fmt.Println("----------------------")
