@@ -9,9 +9,33 @@ import (
 	"strings"
 )
 
-func find_max_crossing_subarray(a []int, low int, mid int, high int) []int { //defining return type
-	left_sum := -math.MaxInt64
-	sum := 0
+type Tupla struct {
+	low   int
+	high  int
+	value float64
+}
+
+func find_maximum_crossing_subarray(a []float64, low int, high int) Tupla {
+	if low == high {
+		return Tupla{low, high, a[low]}
+	} else {
+		mid := int(math.Floor(float64(low+high) / 2))
+		left := find_maximum_crossing_subarray(a, low, mid)
+		right := find_maximum_crossing_subarray(a, mid+1, high)
+		cross := find_max_crossing_subarray(a, low, mid, high)
+		if left.value >= right.value && left.value >= cross.value {
+			return left
+		} else if right.value >= left.value && right.value >= cross.value {
+			return right
+		} else {
+			return cross
+		}
+	}
+}
+
+func find_max_crossing_subarray(a []float64, low int, mid int, high int) Tupla { //defining return type
+	left_sum := -math.MaxFloat64
+	var sum float64 = 0
 	max_left := -math.MaxInt64
 	max_right := -math.MaxInt64
 	for i := mid; i >= low; i-- {
@@ -21,7 +45,7 @@ func find_max_crossing_subarray(a []int, low int, mid int, high int) []int { //d
 			max_left = i
 		}
 	}
-	right_sum := -math.MaxInt64
+	right_sum := -math.MaxFloat64
 	sum = 0
 	for j := mid + 1; j <= high; j++ {
 		sum = sum + a[j]
@@ -31,38 +55,11 @@ func find_max_crossing_subarray(a []int, low int, mid int, high int) []int { //d
 		}
 	}
 	sum = left_sum + right_sum
-	return []int{max_left, max_right, sum}
+	return Tupla{max_left, max_right, sum}
 }
 
-func find_maximum_crossing_subarray(a []int, low int, high int) []int {
-	if low == high {
-		return []int{low, high, a[low]}
-	} else {
-		mid := int(math.Floor(float64(low+high) / 2))
-		left := find_maximum_crossing_subarray(a, low, mid)
-		right := find_maximum_crossing_subarray(a, mid+1, high)
-		cross := find_max_crossing_subarray(a, low, mid, high)
-		left_low := left[0]
-		left_high := left[1]
-		left_sum := left[2]
-		right_low := right[0]
-		right_high := right[1]
-		right_sum := right[2]
-		cross_low := cross[0]
-		cross_high := cross[1]
-		cross_sum := cross[2]
-		if left_sum >= right_sum && left_sum >= cross_sum {
-			return []int{left_low, left_high, left_sum}
-		} else if right_sum >= left_sum && right_sum >= cross_sum {
-			return []int{right_low, right_high, right_sum}
-		} else {
-			return []int{cross_low, cross_high, cross_sum}
-		}
-	}
-}
-
-func generate_changes_array(a []int) []int {
-	changes := []int{}
+func generate_changes_array(a []float64) []float64 {
+	changes := []float64{}
 	for i := 1; i < len(a); i++ {
 		val := a[i] - a[i-1]
 		changes = append(changes, val)
@@ -75,7 +72,7 @@ func main() {
 	fmt.Println("Find Max Crossing Subarray")
 	fmt.Println("Enter the prices separated by spaces\n* type clear to clear array, quit to quit")
 	fmt.Println("---------------------")
-	array := []int{}
+	array := []float64{}
 loop: //label loop
 	for {
 		fmt.Print("=> ")
@@ -91,7 +88,7 @@ loop: //label loop
 		}
 		s := strings.Fields(text)
 		for i := range s {
-			j, err := strconv.Atoi(s[i]) //converting to int
+			j, err := strconv.ParseFloat(s[i], 64) //converting to float64
 			if err != nil {
 				continue
 			}
@@ -103,9 +100,9 @@ loop: //label loop
 		fmt.Println("Array of changes: ", changes)
 		if len(array) > 1 {
 			result := find_maximum_crossing_subarray(changes, 0, len(changes)-1)
-			fmt.Println("Buy in ", result[0], " price: ", array[result[0]])
-			fmt.Println("Sale in ", result[1]+1, " price: ", array[result[1]+1])
-			fmt.Println("Earnings per share: ", result[2])
+			fmt.Println("Buy in ", result.low, " price: ", array[result.low])
+			fmt.Println("Sale in ", result.high+1, " price: ", array[result.high+1])
+			fmt.Println("Earnings per share: ", result.value)
 		}
 		fmt.Println("----------------------")
 	}
