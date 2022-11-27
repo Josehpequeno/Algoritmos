@@ -36,8 +36,8 @@ func find_maximum_crossing_subarray(a []float64, low int, high int) Tupla {
 func find_max_crossing_subarray(a []float64, low int, mid int, high int) Tupla { //defining return type
 	left_sum := -math.MaxFloat64
 	var sum float64 = 0
-	max_left := -math.MaxInt64
-	max_right := -math.MaxInt64
+	max_left := math.MinInt64
+	max_right := math.MinInt64
 	for i := mid; i >= low; i-- {
 		sum = sum + a[i]
 		if sum > left_sum {
