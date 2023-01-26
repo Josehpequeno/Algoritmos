@@ -12,6 +12,7 @@
   - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Rust/InsertSort/src/main.rs">Insert Sort</a>
   - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Rust/MergeSort/src/main.rs">Merge Sort</a>
   - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Rust/Find-Max-Crossing-Subarray/src/main.rs">Find Max Crossing Subarray</a>
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Rust/Square-Matrix-Mutiply/src/main.rs">Square Matrix Mutiply 2x2</a>
 
 - Python
 
