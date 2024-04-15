@@ -21,3 +21,13 @@
 - C++
 
   - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Cplusplus/InsertSort/insertSort.cpp">Insert Sort</a>
+
+- Javascript
+
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Javascript/InsertSort/InsertSort.js">Insert Sort</a>
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Javascript/MergeSort/MergeSort.js">Merge Sort</a>
+
+- Typescript
+
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Javascript/InsertSort/InsertSort.ts">Insert Sort</a>
+  - <a href="https://github.com/Josehpequeno/Algoritmos/blob/main/Javascript/MergeSort/MergeSort.ts">Merge Sort</a>
